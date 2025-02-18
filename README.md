@@ -13,19 +13,10 @@ This analysis is a Capstone project from the [Google Data Analytics Professional
 
 
 #
-_The 6 steps of Data Analysis is used to present this analysis:_
-
-### 1. [Ask](#1-ask) ❓
-### 2. [Prepare](#2-prepare) 💻
-### 3. [Process](#3-process) 🛠
-### 4. [Analyze](#4-analyze) 📊
-### 5. [Share](#5-share) 📋
-### 6. [Act](#6-act) 🧗‍♀️
+_The 6 steps of Data Analysis are used to present this analysis:_
 
 
-
-
-## STEP 1: ASK
+### STEP 1. Ask
 ### 1.1 Background:
 Bellabeat is a high-tech manufacturer of beautifully-designed health-focused smart products for women since 2013. Inspiring and empowering women with knowledge about their own health and habits, Bellabeat has grown rapidly and quickly positioned itself as a tech-driven wellness company for females.
 
@@ -36,7 +27,7 @@ The co-founder and Chief Creative Officer, Urška Sršen is confident that an an
 The company has 5 focus products: Bellabeat app, leaf, time, spring and bellabeat membership. Our team has been asked to focus on a Bellabeat product and analyze smart device usage data to gain insight into how people already use their smart devices. The insights we discover will then help guide the marketing strategy for the company. 
 
 ### 1.2 Business task: 
-**Analyze FitBit Fitness Tracker App data to gain insights into how consumers are using the FitBit app and discover trends and insights for Bellabeat marketing team.**
+Analyze FitBit Fitness Tracker App data to gain insights into how consumers are using the FitBit app and discover trends and insights for Bellabeat marketing team.
 
 ### 1.3 Business Objectives:
 - What are the trends identified?
@@ -68,9 +59,13 @@ The dataset has 18 CSV.
 Data collected includes (1) physical activity recorded in minutes, (2) heart rate, (3) sleep monitoring, (4) daily activity and (5) steps.
 
 ### 2.2 Limitations of Data Set:
-Data collected from year 2016. Users' daily activity, fitness and sleeping habits, diet and food consumption may have changed since then, hence data may not be timely or relevant.
-Sample size of 30 female FitBit users is not representative of the entire female population.
-As data is collected in a survey, hence unable to ascertain the integrity or accuracy of data.
+- Data collected from year 2016. Users' daily activity, fitness and sleeping habits, diet and food consumption may have changed since then, hence data may not be timely or relevant.
+- Sample size of 30 female FitBit users is not representative of the entire female population. The central limit theorem general rule of n≥30 applies and we can use the t test for statstic reference. However, a larger sample size is preferred for the analysis.
+- As data is collected in a survey, hence unable to ascertain the integrity or accuracy of data.
+- Upon further investigation with ```n_distinct()``` to check for unique user Id, the set has 33 user data from daily activity, 24 from sleep and only 8 from weight. There are 3 extra users and some users did not record their data for tracking daily activity and sleep. 
+- For the 8 user data for weight, 5 users manually entered their weight and 3 recorded via a connected wifi device (eg: wifi scale).
+- Most data is recorded from Tuesday to Thursday, which may not be comprehensive enough to form an accurate analysis.
+
 
 ### 2.3 Is Data ROCCC?
 A good data source is ROCCC which stands for Reliable, Original, Comprehensive, Current, and Cited.
@@ -82,14 +77,7 @@ A good data source is ROCCC which stands for Reliable, Original, Comprehensive, 
 - Cited - LOW - Data collected from third party, hence unknown
 Overall, the dataset is considered bad quality data and it is not recommended to produce business recommendations based on this data.
 
-⛔ The dataset has limitations:
 
-- Only 30 user data is available. The central limit theorem general rule of n≥30 applies and we can use the t test for statstic reference. However, a larger sample size is preferred for the analysis.
-- Upon further investigation with ```n_distinct()``` to check for unique user Id, the set has 33 user data from daily activity, 24 from sleep and only 8 from weight. There are 3 extra users and some users did not record their data for tracking daily activity and sleep. 
-- For the 8 user data for weight, 5 users manually entered their weight and 3 recorded via a connected wifi device (eg: wifi scale).
-- Most data is recorded from Tuesday to Thursday, which may not be comprehensive enough to form an accurate analysis.
-
-  
 ### 2.4 Data Selection:
 The following file is selected and copied for analysis.
     • dailyActivity_merged.csv
