@@ -7,10 +7,6 @@ This analysis is a Capstone project from the [Google Data Analytics Professional
 
 ##### Date: February 26, 2025
 
-##### [Tableau Dashboard](https://public.tableau.com)
-
-##### [Tableau Story Presentation to Skateholders](https://public.tableau.com)
-
 
 #
 _The 6 steps of Data Analysis are used to present this analysis:_
@@ -85,11 +81,27 @@ The following file is selected and copied for analysis.
 - R for Data Cleaning, Data Transformation and Data Analysis
 - Tableau for Data Visualisation
 
-
+refer RAnalysis file for PROCESS and ANALYZE step
 ## STEP 3: PROCESS
+- In this step we check for Data Integrity ,accuracy, dupicates, incomplete, nulls.
+- Data Validation: includes checking datatypes , data ranges and other constraints.
+- Data manipulation to make it more organised
+- refer RAnalysis file for PROCESS and ANALYZE step
+
 ## STEP 4: ANALYZE
+- make sense of the given data
+-refer RAnalysis file for PROCESS and ANALYZE step
+  
 ## STEP 5: SHARE
+In this step, we are creating visualizations and communicating our findings based on our analysis.
+##### [Tableau Dashboard](https://public.tableau.com)
+
+##### [Tableau Story Presentation to Skateholders](https://public.tableau.com)
+
+-Shared my case study report on: kaggle and Github
+
 ## STEP 6: ACT
+
 
 
 
