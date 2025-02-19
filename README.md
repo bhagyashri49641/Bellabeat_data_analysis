@@ -90,7 +90,7 @@ refer RAnalysis file for PROCESS and ANALYZE step
 
 ## STEP 4: ANALYZE
 - make sense of the given data
--refer RAnalysis file for PROCESS and ANALYZE step
+- refer RAnalysis file for PROCESS and ANALYZE step
   
 ## STEP 5: SHARE
 In this step, we are creating visualizations and communicating our findings based on our analysis.
@@ -98,7 +98,7 @@ In this step, we are creating visualizations and communicating our findings base
 
 ##### [Tableau Story Presentation to Skateholders](https://public.tableau.com)
 
--Shared my case study report on: kaggle and Github
+- Shared my case study report on: kaggle and Github
 
 ## STEP 6: ACT
 
