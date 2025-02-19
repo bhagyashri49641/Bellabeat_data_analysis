@@ -81,16 +81,20 @@ The following file is selected and copied for analysis.
 - R for Data Cleaning, Data Transformation and Data Analysis
 - Tableau for Data Visualisation
 
-refer RAnalysis file for PROCESS and ANALYZE step
+
 ## STEP 3: PROCESS
 - In this step we check for Data Integrity ,accuracy, dupicates, incomplete, nulls.
 - Data Validation: includes checking datatypes , data ranges and other constraints.
 - Data manipulation to make it more organised
-- refer RAnalysis file for PROCESS and ANALYZE step
+- refer X file for PROCESS and ANALYZE steps using R.
+- refer Y file for PROCESS and ANALYZE steps using Python.
+- refer Z file for PROCESS and ANALYZE steps using SQL.
 
 ## STEP 4: ANALYZE
 - make sense of the given data
-- refer RAnalysis file for PROCESS and ANALYZE step
+- refer X file for PROCESS and ANALYZE steps using R.
+- refer Y file for PROCESS and ANALYZE steps using Python.
+- refer Z file for PROCESS and ANALYZE steps using SQL.
   
 ## STEP 5: SHARE
 In this step, we are creating visualizations and communicating our findings based on our analysis.
