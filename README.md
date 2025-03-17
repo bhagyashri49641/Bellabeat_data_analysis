@@ -23,7 +23,7 @@ _The 6 steps of Data Analysis are used to present this analysis:_
 5. [Share](#share)  
 6. [Act](#act)  
 
-## Ask
+## 1. Ask
 ### 1.1 Background:
 Bellabeat is a high-tech manufacturer of beautifully designed health-focused smart products for women since 2013. Inspiring and empowering women with knowledge about their own health and habits, Bellabeat has grown rapidly and quickly positioned itself as a tech-driven wellness company for females.
 
@@ -54,7 +54,7 @@ Analyze FitBit Fitness Tracker App data to gain insights into how consumers are 
 
 
 
-## 2 Prepare 
+## 2. Prepare
 
 ### 2.1 Information on Data Source:
 The data set is publicly available on [Kaggle: FitBit Fitness Tracker Data](https://www.kaggle.com/arashnic/fitbit).
@@ -94,7 +94,7 @@ The following file is selected and copied for analysis.
 - Python for Data Cleaning, Data Transformation and Data Analysis
 - PowerBI for Data Visualization
 
-## 3: PROCESS
+## 3. Process
 - In this step we check for Data Integrity ,accuracy, dupicates, incomplete, nulls.
 - Data Validation: includes checking datatypes , data ranges and other constraints.
 - Data manipulation to make it more organised
@@ -102,13 +102,13 @@ The following file is selected and copied for analysis.
 - refer FitBitAnalysis.ipynb file for PROCESS steps using Python.
 - refer Z file for PROCESS steps using SQL.
 
-## STEP 4: ANALYZE
+## 4. Analyze
 - make sense of the given data
 - refer X file for ANALYZE steps using R.
 - refer FitBitAnalysis.ipynb file for ANALYZE steps using Python.
 - refer Z file for ANALYZE steps using SQL.
   
-## Share
+## 5. Share
 In this step, we are creating visualizations and communicating our findings based on our analysis.
 ##### [Tableau Dashboard](https://public.tableau.com)
 
@@ -117,7 +117,7 @@ In this step, we are creating visualizations and communicating our findings base
 - Shared my case study report on: [Github](https://github.com/bhagyashri49641/Bellabeat_data_analysis)
 
 
-## Act
+## 6. Act
 In the final step, we will be delivering our insights and providing recommendations based on our analysis.
    
 Here, we revisit our business questions and share with you our high-level business recommendations.
