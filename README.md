@@ -248,7 +248,9 @@ hourly_merge %>%
 ### 4.2 Data Distribution over the week
 ![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/309a6457900ce8c6e956495289f64bbe2062fcdd/Data_distribution_over_the_week.png
 )
-### 4.2 Active Minutes:
+### 4.3 Average sleep time per day
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_Sleep_Time.png)
+### 4.3 Active Minutes:
 [Back to Analyze](#4-analyze)
 Percentage of active minutes in the four categories: very active, fairly active, lightly active and sedentary. From the pie chart, we can see that most users spent 81.3% of their daily activity in sedentary minutes and only 1.74% in very active minutes. 
 ```
@@ -265,7 +267,7 @@ plot_ly(percentage, labels = ~level, values = ~minutes, type = 'pie',textpositio
           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
           )
 ```
-![newplot](link to pie chart)
+![newplot]([link to pie chart](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Activity_Minutes_Percentage.png))
 
 
 The American Heart Association and World Health Organization recommend at least 150 minutes of moderate-intensity activity or 75 minutes of vigorous activity, or a combination of both, each week. That means it needs an daily goal of 21.4 minutes of FairlyActiveMinutes or 10.7 minutes of VeryActiveMinutes.
@@ -284,8 +286,8 @@ glimpse(active_users)
 
 The bar graph shows that there is a jump on Saturday: user spent LESS time in sedentary minutes and take MORE steps. Users are out and about on Saturday. 
 
-![image](sedentary minutes vs weekday)
-![image](total steps vs weekday)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_sedmin.png)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_Steps.png)
 
 
 
@@ -311,7 +313,7 @@ plot6 <-  ggplot(data=avg_daily_steps, aes(x=hour, y=avg_steps, fill=avg_steps )
 ggsave("Average_Hourly_Steps.png", plot = plot6, width = 10, height = 5, dpi = 200)
 
 ```
-![image](Avg steps vs hour of the day)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Hourly_Steps.png))
 
 
 How active the users are weekly in total steps. Tuesday and Saturdays the users take the most steps. 
@@ -331,7 +333,7 @@ Average_Weekday_Steps <-  ggplot(data = avg_weekday_steps, aes(x=weekday, y=avg_
                           theme_minimal()
 ggsave("Average_Weekday_Steps.png", plot = Average_Weekday_Steps, width = 8, height = 6, dpi = 200)
 ```
-![image](avg steps per week)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_Steps.png)
 
 
 
@@ -353,15 +355,15 @@ plot9 <-
 ggsave("calories_vs_total_steps.png", plot = plot9, width = 8, height = 6, dpi = 300) #plot9
 
 ```
-![image](calories vs steps)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/calories_vs_total_steps.png)
 
 Comparing the four active levels to the total steps, we see most data is concentrated on users who take about 5000 to 15000 steps a day. These users spent an average between 8 to 13 hours in sedentary, 5 hours in lightly active, and 1 to 2 hour for fairly and very active. 
 
-![image](active_minutes_vs_steps)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/active_minutes_vs_steps.png)
 
 According to [this healthline.com article](https://www.healthline.com/nutrition/how-many-calories-per-day#average-calorie-needs), moderately active woman between the ages of 26–50 needs to eat about 2,000 calories per day and moderately active man between the ages of 26–45 needs 2,600 calories per day to maintain his weight. Comparing the four active levels to the calories, we see most data is concentrated on users who burn 2000 to 3000 calories a day. These users also spent an average between 8 to 13 hours in sedentary, 5 hours in lightly active, and 1 to 2 hour for fairly and very active. Additionally, we see that the sedentary line is leveling off toward the end while fairly + very active line is curing back up. This indicate that the users who burn more calories spend less time in sedentary, more time in fairly + active. 
 
-![image](active_minutes_vs_calories)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/active_minutes_vs_calories.png)
 
 ### 4.6 Sleep:
 [Back to Analyze](#4-analyze)
@@ -397,7 +399,7 @@ plot13 <- ggplot(data = merged_data, aes(x = sedentary_minutes, y = total_minute
   theme_classic()
 ggsave("total_minutes_asleep_vs_Sedentary_minutes.png", plot = plot13, width = 10, height = 6, dpi = 300) #plot13
 ```
-![image](total_minutes_asleep_vs_Sedentary_minutes)
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/total_minutes_asleep_vs_Sedentary_minutes.png)
 
   
 ## 5. Share
