@@ -91,18 +91,17 @@ The following file is selected and copied for analysis.
 ## 3. Process
 [Back to Top](#author-bhagyashri-mane)
 
-- In this step we check for Data Integrity ,accuracy, dupicates, incomplete, nulls.
-- Data Validation: includes checking datatypes , data ranges and other constraints.
-- Data manipulation to make it more organised
-- refer X file for PROCESS steps using R.
-- refer FitBitAnalysis.ipynb file for PROCESS steps using Python.
-- refer Z file for PROCESS steps using SQL.
+- In this step, we check for Data Integrity, accuracy, duplicates, incomplete, and nulls.
+- Data Validation: includes checking data types, data ranges, and other constraints.
+- Data manipulation to make it more organized
+- refer FitbitAnalysis.Rmd file for process steps using R.
+
 
 ## 4. Analyze
 [Back to Top](#author-bhagyashri-mane)
 
 - make sense of the given data
-- refer FitbitAnalysis.Rmd file for Analyze steps using R.
+- refer FitbitAnalysis.Rmd file for analyzing steps using R.
   
 ## 5. Share
 [Back to Top](#author-bhagyashri-mane)
@@ -122,19 +121,19 @@ Here, we revisit our business questions and share with you our high-level busine
     
 **1. What are the trends identified?**
   
-* Majority of users (81.3%) are using the FitBit app to track sedentary activities and not using it for tracking their health habits.
+* The majority of users (81.3%) are using the Fitbit app to track sedentary activities and not using it for tracking their health habits.
     
 * Users prefer to track their activities during weekdays as compared to weekends - perhaps because they spend more time outside on weekdays and stay in on weekends.
    
 **2. How could these trends apply to Bellabeat customers?**
     
-* Both companies develop products focused on providing women with their health, habit and fitness data and encouraging them to understand their current habits and make healthy decisions. These common trends surrounding health and fitness can very well abe pplied to Bellabeat customers.
+* Both companies develop products focused on providing women with their health, habit, and fitness data and encouraging them to understand their current habits and make healthy decisions. These common trends surrounding health and fitness can very well be applied to Bellabeat customers.
     
-**3. How could these trends help influence Bellabeat marketing strategy?**
+**3. How could these trends help influence Bellabeat's marketing strategy?**
     
-* Bellabeat marketing team can encourage users by educating and equipping them with knowledge about fitness benefits, suggest different types of exercise (ie. simple 10 minutes exercise on weekday and a more intense exercise on weekends) and calories intake and burnt rate information on the Bellabeat app.
+* Bellabeat marketing team can encourage users by educating and equipping them with knowledge about fitness benefits, suggesting different types of exercise (ie. simple 10 minutes exercise on weekdays and a more intense exercise on weekends), and calories intake and burnt rate information on the Bellabeat app.
   
-* On weekends, Bellabeat app can also prompt notification to encourage users to exercise.
+* On weekends, the Bellabeat app can also prompt notifications to encourage users to exercise.
     
   
 
