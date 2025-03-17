@@ -213,12 +213,12 @@ weight %>%
 - make sense of the given data
 - refer FitbitAnalysis.Rmd file for analyzing steps using R.
 
--  [Summary](#4.1-summary)
--  [Active Minutes](#active-minutes)
--  [Noticebal Day](#noticeable-day)
--  [Total Steps](#total-steps)
--  [Interesting Finds](#interesting-finds)
--  [Sleep](#sleep)
+-  4.1 [Summary](#summary)
+-  4.2 [Active Minutes](#active-minutes)
+-  4.3 [Noticebal Day](#noticeable-day)
+-  4.4 [Total Steps](#total-steps)
+-  4.5 [Interesting Finds](#interesting-finds)
+-  4.6 [Sleep](#sleep)
 
 
 ### 4.1 Summary
