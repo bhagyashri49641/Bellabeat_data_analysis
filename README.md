@@ -94,14 +94,164 @@ The following file is selected and copied for analysis.
 - In this step, we check for Data Integrity, accuracy, duplicates, incomplete, and nulls.
 - Data Validation: includes checking data types, data ranges, and other constraints.
 - Data manipulation to make it more organized
+- merge data if needed
 - refer FitbitAnalysis.Rmd file for process steps using R.
 
+### 3.1 Check For NA
+```{r}
+sum(is.na(daily_activity))
+sum(is.na(sleep_day))
+sum(is.na(weight))
+sum(is.na(hourly_steps))
+sum(is.na(hourly_intensities))
+sum(is.na(hourly_calories))
+# sum(is.na(heartrate))
+## We will leave the NA. The NA belongs to "Fat" data of different dates.
+```
+### 3.2 Check for duplicates and remove duplicates
+```{r}
+cat("Number of duplicate rows in daily_activity before removal:", nrow(daily_activity[duplicated(daily_activity),]), "\n")
+daily_activity <- daily_activity[!duplicated(daily_activity),]
+cat("Number of duplicate rows in daily_activity after removal:", nrow(daily_activity[duplicated(daily_activity),]), "\n") 
+# Confirm duplicates removed
+sum(duplicated(daily_activity))
+```
+#### Repeat the above code chunk for all csv that we need
 
+### 3.3 Convert character columns to date
+[Back to Process](#3-process)
+
+```{r}
+daily_activity$ActivityDate <- as.Date(daily_activity$ActivityDate, format = "%m/%d/%Y")
+sleep_day$SleepDay <- as.Date(sleep_day$SleepDay, format = "%m/%d/%Y")
+weight$Date <- as.Date(weight$Date, format = "%m/%d/%Y")
+```
+#### Use the below date format to extract hours from hourly data
+```{r} 
+hourly_steps$ActivityHour <- as.POSIXct(hourly_steps$ActivityHour, format = "%m/%d/%Y %I:%M:%S %p") # Convert ActivityHour to POSIXct (24-hour format )
+hourly_steps$Date <- as.Date(format(hourly_steps$ActivityHour, format = "%m/%d/%Y")) # Extract Date
+hourly_steps$Hour <- format(hourly_steps$ActivityHour, format = "%H")  # Character # Extract the hour
+hourly_steps$Hour <- as.numeric(hourly_steps$Hour)            # Convert to numeric (0-23)
+write_csv(hourly_steps, "hourly_steps.csv")                 # Check result
+```
+### 3.4 Add a new column for the weekdays
+[Back to Process](#3-process)
+```{r}
+daily_activity <- daily_activity %>% mutate( weekday = weekdays(as.Date(ActivityDate, "%m/%d/%Y")))
+```
+### 3.5 Clean column names
+[Back to Process](#3-process)
+```{r}
+daily_activity <- daily_activity %>% clean_names()
+sleep_day <- sleep_day %>% clean_names()
+weight <- weight %>% clean_names()
+
+hourly_steps <- hourly_steps %>% clean_names()
+hourly_intensities <- hourly_intensities %>% clean_names()
+hourly_calories <- hourly_calories %>% clean_names()
+
+## View updated column names
+colnames(daily_activity)
+colnames(sleep_day)
+colnames(weight)
+colnames(hourly_steps)
+colnames(hourly_intensities)
+colnames(hourly_calories)
+
+```
+### 3.6 merge daily_activity, sleep and weight data
+[Back to Process](#3-process)
+
+```{r}
+merged1 <- merge(daily_activity,sleep_day,
+                  by.x = c("id", "activity_date"), 
+                  by.y = c("id", "sleep_day"),
+                  all=TRUE)
+merged_data <- merge(merged1, weight, 
+                      by.x = c("id", "activity_date"), 
+                      by.y = c("id", "date"),
+                      all=TRUE)
+
+#save csv for future use
+write_csv(merged_data, "merged_data.csv")
+
+# Check head, NA, duplicates, distinct id in merged data.
+head(merged_data)
+glimpse(merged_data)
+sum(is.na(merged_data))
+sum(duplicated(merged_data))
+n_distinct(merged_data$id)
+
+# similarly merge hourly steps, intensity and calories data (for code check FitbitAnalysis.Rmd file)
+```
+### 3.7 Examine the dataset and check if all 30 users are unique.
+
+#### Check to see if all users are unique.We supposed to have 30 users or 30 IDs. So We have 3 extra from daily activity, 6 less from the sleep day table, and 22 less from the weight table. 
+```
+n_distinct(daily_activity$id)
+n_distinct(sleep_day$id)
+n_distinct(weight$id)
+```
+#### Since weight table only has 8 users enter their information. Let's take a look at how they enter the information. 5 users are manually reporting the weight and 3 uers are reporting it with a connected device - wifi connected scale. 
+```
+weight %>% 
+  filter(is_manual_report == "True") %>% 
+  group_by(id) %>% 
+  summarise("Manual Weight Report"=n()) %>%
+  distinct()
+
+weight %>% 
+  filter(is_manual_report == "False") %>% 
+  group_by(id) %>% 
+  summarise("Manual Weight Report"=n()) %>%
+  distinct()
+```
 ## 4. Analyze
 [Back to Top](#author-bhagyashri-mane)
 
 - make sense of the given data
 - refer FitbitAnalysis.Rmd file for analyzing steps using R.
+
+-  [Summary](#4.1-summary)
+-  [Active Minutes](#active-minutes)
+-  [Noticebal Day](#noticeable-day)
+-  [Total Steps](#total-steps)
+-  [Interesting Finds](#interesting-finds)
+-  [Sleep](#sleep)
+
+
+### 4.1 Summary:
+Check min, max, mean, median and any outliers. Avg weight is 135 pounds with BMI of 24 and burn 2050 calories. Avg steps is 10200, max is almost triple that 36000 steps. Users spend on avg 12 hours a day in sedentary minutes, 4 hours lightly active, only half hour in fairly+very active! Users also gets about 7 hour of sleep. 
+```
+merged_data %>%
+  dplyr::select(
+         total_steps,
+         total_distance,
+         very_active_minutes,
+         fairly_active_minutes,
+         lightly_active_minutes,
+         sedentary_minutes,
+         calories,
+         total_minutes_asleep,
+         total_time_in_bed,
+         weight_kg,
+         bmi
+         ) %>%
+  na.omit() %>%
+  summary()
+
+hourly_merge %>%
+  dplyr::select(
+                hour,
+                step_total,
+                calories,
+                total_intensity,
+                )%>%
+  na.omit() %>%
+  summary()
+```
+![summary](link of screenshot)
+
   
 ## 5. Share
 [Back to Top](#author-bhagyashri-mane)
