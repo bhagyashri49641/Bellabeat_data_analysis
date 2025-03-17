@@ -105,9 +105,9 @@ sum(is.na(weight))
 sum(is.na(hourly_steps))
 sum(is.na(hourly_intensities))
 sum(is.na(hourly_calories))
-# sum(is.na(heartrate))
 ## We will leave the NA. The NA belongs to "Fat" data of different dates.
 ```
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/bfadcfc3db27c7102666708613f5f89dbe6f5159/Plots/checkNA.png)
 ### 3.2 Check for duplicates and remove duplicates
 ```{r}
 cat("Number of duplicate rows in daily_activity before removal:", nrow(daily_activity[duplicated(daily_activity),]), "\n")
@@ -115,8 +115,11 @@ daily_activity <- daily_activity[!duplicated(daily_activity),]
 cat("Number of duplicate rows in daily_activity after removal:", nrow(daily_activity[duplicated(daily_activity),]), "\n") 
 # Confirm duplicates removed
 sum(duplicated(daily_activity))
-```
+
 #### Repeat the above code chunk for all csv that we need
+```
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/bfadcfc3db27c7102666708613f5f89dbe6f5159/Plots/check_and_remove_duplicates.png)
+
 
 ### 3.3 Convert character columns to date
 [Back to Process](#3-process)
@@ -157,8 +160,10 @@ colnames(weight)
 colnames(hourly_steps)
 colnames(hourly_intensities)
 colnames(hourly_calories)
-
 ```
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/bfadcfc3db27c7102666708613f5f89dbe6f5159/Plots/updated_col_names.png)
+
+
 ### 3.6 merge daily_activity, sleep and weight data
 [Back to Process](#3-process)
 
@@ -243,13 +248,12 @@ hourly_merge %>%
   na.omit() %>%
   summary()
 ```
-![summary](link of screenshot)
+![summary](link of screenshot :I need to run code and get this again)
 
 ### 4.2 Data Distribution over the week
-![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/309a6457900ce8c6e956495289f64bbe2062fcdd/Data_distribution_over_the_week.png
-)
+![image]()
 ### 4.3 Average sleep time per day
-![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_Sleep_Time.png)
+![image]()
 ### 4.3 Active Minutes:
 [Back to Analyze](#4-analyze)
 Percentage of active minutes in the four categories: very active, fairly active, lightly active and sedentary. From the pie chart, we can see that most users spent 81.3% of their daily activity in sedentary minutes and only 1.74% in very active minutes. 
@@ -267,7 +271,7 @@ plot_ly(percentage, labels = ~level, values = ~minutes, type = 'pie',textpositio
           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
           )
 ```
-![newplot]([link to pie chart](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Activity_Minutes_Percentage.png))
+![newplot](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/bfadcfc3db27c7102666708613f5f89dbe6f5159/Plots/PieChart.png)
 
 
 The American Heart Association and World Health Organization recommend at least 150 minutes of moderate-intensity activity or 75 minutes of vigorous activity, or a combination of both, each week. That means it needs an daily goal of 21.4 minutes of FairlyActiveMinutes or 10.7 minutes of VeryActiveMinutes.
