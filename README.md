@@ -245,6 +245,9 @@ hourly_merge %>%
 ```
 ![summary](link of screenshot)
 
+### 4.2 Data Distribution over the week
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/309a6457900ce8c6e956495289f64bbe2062fcdd/Data_distribution_over_the_week.png
+)
 ### 4.2 Active Minutes:
 [Back to Analyze](#4-analyze)
 Percentage of active minutes in the four categories: very active, fairly active, lightly active and sedentary. From the pie chart, we can see that most users spent 81.3% of their daily activity in sedentary minutes and only 1.74% in very active minutes. 
