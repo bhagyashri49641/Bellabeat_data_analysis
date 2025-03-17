@@ -185,6 +185,7 @@ n_distinct(merged_data$id)
 # similarly merge hourly steps, intensity and calories data (for code check FitbitAnalysis.Rmd file)
 ```
 ### 3.7 Examine the dataset and check if all 30 users are unique.
+[Back to Process](#3-process)
 
 #### Check to see if all users are unique.We supposed to have 30 users or 30 IDs. So We have 3 extra from daily activity, 6 less from the sleep day table, and 22 less from the weight table. 
 ```
@@ -220,7 +221,7 @@ weight %>%
 -  [Sleep](#sleep)
 
 
-### 4.1 Summary:
+### 4.1 Summary
 Check min, max, mean, median and any outliers. Avg weight is 135 pounds with BMI of 24 and burn 2050 calories. Avg steps is 10200, max is almost triple that 36000 steps. Users spend on avg 12 hours a day in sedentary minutes, 4 hours lightly active, only half hour in fairly+very active! Users also gets about 7 hour of sleep. 
 ```
 merged_data %>%
