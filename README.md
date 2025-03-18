@@ -220,7 +220,7 @@ weight %>%
 - refer FitbitAnalysis.Rmd file for analyzing steps using R.
 
 ### 4.1 Summary
-Check min, max, mean, median and any outliers. Avg weight is 135 pounds with BMI of 24 and burn 2050 calories. Avg steps is 10200, max is almost triple that 36000 steps. Users spend on avg 12 hours a day in sedentary minutes, 4 hours lightly active, only half hour in fairly+very active! Users also gets about 7 hour of sleep. 
+Check min, max, mean, median and any outliers.
 ```
 merged_data %>%
   dplyr::select(
@@ -249,6 +249,7 @@ hourly_merge %>%
   na.omit() %>%
   summary()
 ```
+Avg weight is 135 pounds with BMI of 24 and burn 2050 calories. Avg steps is 10200, max is almost triple that 36000 steps. Users spend on avg 12 hours a day in sedentary minutes, 4 hours lightly active, only half hour in fairly+very active! Users also gets about 7 hour of sleep. 
 ![summary](link of screenshot :I need to run code and get this again)
 
 ### 4.2 Data Distribution over the week
@@ -411,7 +412,6 @@ ggsave("total_minutes_asleep_vs_Sedentary_minutes.png", plot = plot13, width = 1
 [Back to Top](#author-bhagyashri-mane)
 
 - Shared my case study report on: [Github](https://github.com/bhagyashri49641/Bellabeat_data_analysis)
-- shared my case study report on : [Kaggle](https://www.kaggle.com/code/informantshree/fitbitanalysis)
 - Fitbit data analysis Dashboard: [Tableau Dashboard](https://public.tableau.com)
 
 
