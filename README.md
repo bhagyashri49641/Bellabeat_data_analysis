@@ -221,6 +221,7 @@ weight %>%
 
 ### 4.1 Summary
 Check min, max, mean, median and any outliers.
+Avg weight is 135 pounds with BMI of 24 and burn 2050 calories. Avg steps is 10200, max is almost triple that 36000 steps. Users spend on avg 12 hours a day in sedentary minutes, 4 hours lightly active, only half hour in fairly+very active! Users also gets about 7 hour of sleep. 
 ```
 merged_data %>%
   dplyr::select(
@@ -249,22 +250,34 @@ hourly_merge %>%
   na.omit() %>%
   summary()
 ```
-Avg weight is 135 pounds with BMI of 24 and burn 2050 calories. Avg steps is 10200, max is almost triple that 36000 steps. Users spend on avg 12 hours a day in sedentary minutes, 4 hours lightly active, only half hour in fairly+very active! Users also gets about 7 hour of sleep. 
+
 ![summary](link of screenshot :I need to run code and get this again)
 
 ### 4.2 Data Distribution over the week
-![image]()
-### 4.3 Average sleep time per day
-![image]()
+```
+most_data_recorder_on <- merged_data %>%
+  group_by(weekday) %>%
+  summarise(record_count = n(), .groups = "drop")
+glimpse(most_data_recorder_on)
+
+most_active_days <- ggplot(data=most_data_recorder_on, aes(x=weekday, y=record_count))+
+  geom_bar(stat = "identity",fill="#CD69C9")+
+  labs(title="Data distribution over the week")+
+  theme_minimal()
+ggsave("Data_distribution_over_the_week.png", plot = most_active_days, width = 6, height = 3, dpi = 200) #plot1
+```
+we can see that from Tuesday to Thursday most of the data is being recorded by the users.
+
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/944e24de26fa06ef592573956ab029ca919e2eca/Plots/Data_distribution_over_the_week.png)
+
 ### 4.3 Active Minutes:
 [Back to Analyze](#4-analyze)
-Percentage of active minutes in the four categories: very active, fairly active, lightly active and sedentary. From the pie chart, we can see that most users spent 81.3% of their daily activity in sedentary minutes and only 1.74% in very active minutes. 
+
 ```
 percentage <- data.frame(
   level=c("Sedentary", "Lightly", "Fairly", "Very Active"),
   minutes=c(sedentary_percentage,lightly_percentage,fairly_percentage,active_percentage)
   )
-
 
 plot_ly(percentage, labels = ~level, values = ~minutes, type = 'pie',textposition = 'outside',textinfo = 'label+percent',
         marker = list(colors = c("#FF4500", "#1E90FF", "#32CD32", "#FFD700"))) %>%
@@ -273,12 +286,17 @@ plot_ly(percentage, labels = ~level, values = ~minutes, type = 'pie',textpositio
           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
           )
 ```
-![newplot](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/bfadcfc3db27c7102666708613f5f89dbe6f5159/Plots/PieChart.png)
+Percentage of active minutes in the four categories: very active, fairly active, lightly active and sedentary. From the pie chart, we can see that most users spent 81.3% of their daily activity in sedentary minutes and only 1.74% in very active minutes. 
+
+![newplot](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/944e24de26fa06ef592573956ab029ca919e2eca/Plots/PieChart.png)
+
 
 
 The American Heart Association and World Health Organization recommend at least 150 minutes of moderate-intensity activity or 75 minutes of vigorous activity, or a combination of both, each week. That means it needs an daily goal of 21.4 minutes of FairlyActiveMinutes or 10.7 minutes of VeryActiveMinutes.
 
+
 In our dataset, **30 users** met fairly active minutes or very active minutes.
+
 ```
 active_users <- merged_data %>%
   filter(fairly_active_minutes >= 21.4 | very_active_minutes>=10.7) %>% 
@@ -286,22 +304,26 @@ active_users <- merged_data %>%
   count(id) 
 glimpse(active_users)
 ```
-
-### 4.3 Noticeable Day:
+### 4.4 Average Steps per Week
 [Back to Analyze](#4-analyze)
+# calculate the avg of all over steps for each weekday here group only by weekday
+```
+Average_Weekday_Steps <-  ggplot(data=avg_weekday_steps, aes(x=weekday, y=avg_weekly_steps, fill=weekday))+ 
+                          geom_bar(stat="identity")+
+                          geom_text(aes(label = round(avg_weekly_steps, 1)), vjust = -0.5, size = 3) +
+                          labs(title="Average Steps Per Day", x= "Day of the week" ,y="Average Steps")+
+                          theme_minimal()
+ggsave("Average_Weekday_Steps.png", plot = Average_Weekday_Steps, width = 8, height = 6, dpi = 200) #plot2
+```
+The bar graph shows that on average 8000 steps are recorded on Tuesday and Saturday. These are the days when users are more active and take more steps.
 
-The bar graph shows that there is a jump on Saturday: user spent LESS time in sedentary minutes and take MORE steps. Users are out and about on Saturday. 
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/944e24de26fa06ef592573956ab029ca919e2eca/Plots/Average_Weekday_Steps.png)
 
-![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_sedmin.png)
-![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_Steps.png)
-
-
-
-### 4.4 Hourly Steps:
+### 4.5 Average Steps per Hour
 [Back to Analyze](#4-analyze)
 
 Let's look at how active the users are per hourly in total steps. From 5PM to 7PM the users take the most steps. 
-```{r}
+```
 avg_daily_steps <-  hourly_merge %>%
                     filter(step_total > 0) %>% 
                     group_by(hour) %>%
@@ -319,35 +341,65 @@ plot6 <-  ggplot(data=avg_daily_steps, aes(x=hour, y=avg_steps, fill=avg_steps )
 ggsave("Average_Hourly_Steps.png", plot = plot6, width = 10, height = 5, dpi = 200)
 
 ```
-![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Hourly_Steps.png))
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/944e24de26fa06ef592573956ab029ca919e2eca/Plots/Average_Hourly_Steps.png)
 
 
-How active the users are weekly in total steps. Tuesday and Saturdays the users take the most steps. 
-```
-```{r}
-# Weekly analysis of Steps 
-# calculate the avg of all over steps for each weekday here group only by weekday
-avg_weekday_steps <- merged_data %>%
-                      group_by(weekday) %>%
-                      summarise(avg_weekly_steps = mean(total_steps, na.rm = TRUE), .groups = "drop")
-glimpse(avg_weekday_steps)
-
-Average_Weekday_Steps <-  ggplot(data = avg_weekday_steps, aes(x=weekday, y=avg_weekly_steps, fill=weekday))+ 
-                          geom_bar(stat="identity")+
-                          geom_text(aes(label = round(avg_weekly_steps, 1)), vjust = -0.5, size = 3) +
-                          labs(title="Average Weekday Steps", y="Average Steps")+
-                          theme_minimal()
-ggsave("Average_Weekday_Steps.png", plot = Average_Weekday_Steps, width = 8, height = 6, dpi = 200)
-```
-![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/Average_Weekday_Steps.png)
-
-
-
-
-### 4.5 Interesting Finds:
+### 4.6 Average of Sedentary Minutes per Day:
 [Back to Analyze](#4-analyze)
 
-The more active that you're, the more steps you take, and the more calories you will burn. This is an obvious fact, but we can still look into the data to find any interesting. Here we see that some users who are sedentary, take minimal steps, but still able to burn over 1500 to 2500 calories compare to users who are more active, take more steps, but still burn similar calories.
+The graph below shows that users spend 16 to 17 hours every day in sedentary, if we remove sleep time of average 8 hours still users are not much active for 8 to 9 hours each day.
+also we can see that on Tuesday and Saturday people spend less time in sedentray minutes and have more step count on these days.
+
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/944e24de26fa06ef592573956ab029ca919e2eca/Plots/Average_Weekday_sedmin.png)
+
+
+### 4.7 Analyzing sleep patterns
+[Back to Analyze](#4-analyze)
+
+#### Average sleep time per day
+```
+plot4 <- ggplot(data=avg_weekday_time_asleep, aes(x=weekday, y=avg_weekly_time, fill=weekday))+ 
+         geom_bar(stat="identity")+
+         geom_text(aes(label = round(avg_weekly_time, 1)), vjust = -0.5, size = 3) +
+         labs(title="Average Asleep Time Per Day",x="Day of the week", y="Time Asleep")+
+         theme_minimal()
+ggsave("Average_Weekday_Sleep_Time.png", plot = plot4, width = 8, height = 6, dpi = 200) #plot5
+```
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/944e24de26fa06ef592573956ab029ca919e2eca/Plots/Average_Weekday_Sleep_Time.png)
+
+According to article: [Fitbit Sleep Study](https://blog.fitbit.com/sleep-study/#:~:text=The%20average%20Fitbit%20user%20is,is%20spent%20restless%20or%20awake.&text=People%20who%20sleep%205%20hours,the%20beginning%20of%20the%20night.), 55 minutes are spent awake in bed before going to sleep. We have 13 users in our dataset spend 55 minutes awake before alseep. 
+
+```
+awake_in_bed <- mutate(sleep_day, AwakeTime = total_time_in_bed - total_minutes_asleep)
+awake_in_bed <- awake_in_bed %>% 
+  filter(AwakeTime >= 55) %>% 
+  group_by(id) %>% 
+  arrange(AwakeTime, desc=TRUE) 
+```
+
+#### we will check is there any effect of sedentary minutes and time asleep
+```
+plot13 <- ggplot(data = merged_data, aes(x = sedentary_minutes, y = total_minutes_asleep, color=total_minutes_asleep)) +
+  geom_point() +
+  scale_color_gradient(low="steelblue", high="orange")+
+  geom_smooth(method = 'loess', formula = 'y ~ x', color = '#005FCC') +
+  labs(title = "Total Minutes Asleep vs Sedentary minutes", x = 'sedentary minutes', y = 'minutes asleep') +
+  theme_classic()
+ggsave("total_minutes_asleep_vs_Sedentary_minutes.png", plot = plot13, width = 10, height = 6, dpi = 300) #plot13
+```
+we can see there is negative correlation between total time asleep and sedentary minutes
+The scatter plot below shows that between 0- 1500 sedentary minutes total time asleep decreases with increasing sedentary time.
+
+![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/total_minutes_asleep_vs_Sedentary_minutes.png)
+
+      
+### 4.8 Interesting Finds:
+[Back to Analyze](#4-analyze)
+
+- The more active you are, the more steps you take, and the more calories you will burn. This is an obvious fact, but we can still look into the data to find any interesting.
+- Here we see that some users who are sedentary, take minimal steps, but are still able to burn over 1500 to 2500 calories compared to users who are more active, and take more steps, but still burn similar calories.
+- This can be the effect of intensity of the workout for example less steps but one place excersice like rope jumping or cardio exercise may help users burn more calories without increase in the step count.
+- This may give a hint that only counting Steps per day is not enough bellabeat needs to incorporate motion sensors into the fitness band so that it can track the activity as well as calories burned.
 
 ```
 plot9 <-
@@ -363,49 +415,13 @@ ggsave("calories_vs_total_steps.png", plot = plot9, width = 8, height = 6, dpi =
 ```
 ![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/calories_vs_total_steps.png)
 
-Comparing the four active levels to the total steps, we see most data is concentrated on users who take about 5000 to 15000 steps a day. These users spent an average between 8 to 13 hours in sedentary, 5 hours in lightly active, and 1 to 2 hour for fairly and very active. 
+Comparing the four active levels to the total steps, we see most data is concentrated on users who take about 5000 to 15000 steps a day. These users spent an average between 8 to 9 hours in sedentary, 5 hours in lightly active, and 1 to 2 hour for fairly and very active. 
 
 ![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/active_minutes_vs_steps.png)
 
-According to [this healthline.com article](https://www.healthline.com/nutrition/how-many-calories-per-day#average-calorie-needs), moderately active woman between the ages of 26–50 needs to eat about 2,000 calories per day and moderately active man between the ages of 26–45 needs 2,600 calories per day to maintain his weight. Comparing the four active levels to the calories, we see most data is concentrated on users who burn 2000 to 3000 calories a day. These users also spent an average between 8 to 13 hours in sedentary, 5 hours in lightly active, and 1 to 2 hour for fairly and very active. Additionally, we see that the sedentary line is leveling off toward the end while fairly + very active line is curing back up. This indicate that the users who burn more calories spend less time in sedentary, more time in fairly + active. 
+According to [this healthline.com article](https://www.healthline.com/nutrition/how-many-calories-per-day#average-calorie-needs), moderately active woman between the ages of 26–50 needs to eat about 2,000 calories per day and moderately active man between the ages of 26–45 needs 2,600 calories per day to maintain his weight. Comparing the four active levels to the calories, we see most data is concentrated on users who burn 2000 to 3000 calories a day. These users also spent an average between 8 to 9 hours in sedentary, 5 hours in lightly active, and 1 to 2 hour for fairly and very active. Additionally, we see that the sedentary line is leveling off toward the end while fairly active plus very active line is curing back up. This indicate that the users who burn more calories spend less time in sedentary, more time in fairly + active. 
 
 ![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/active_minutes_vs_calories.png)
-
-### 4.6 Sleep:
-[Back to Analyze](#4-analyze)
-
-According to article: [Fitbit Sleep Study](https://blog.fitbit.com/sleep-study/#:~:text=The%20average%20Fitbit%20user%20is,is%20spent%20restless%20or%20awake.&text=People%20who%20sleep%205%20hours,the%20beginning%20of%20the%20night.), 55 minutes are spent awake in bed before going to sleep. We have 13 users in our dataset spend 55 minutes awake before alseep. 
-
-```
-awake_in_bed <- mutate(sleep_day, AwakeTime = total_time_in_bed - total_minutes_asleep)
-awake_in_bed <- awake_in_bed %>% 
-  filter(AwakeTime >= 55) %>% 
-  group_by(id) %>% 
-  arrange(AwakeTime, desc=TRUE) 
-```
-
-How about calories vs asleep? Do people sleep more burn less calories? Plotting the two variables we can see that there is not much a correlation. 
-```
-ggplot(data=merged_data, aes(x=total_minutes_asleep, y = calories, color=total_minutes_asleep))+ 
-  geom_point()+ 
-  xlab("Total Minutes Alseep")+
-  geom_smooth(method = 'loess', formula = 'y ~ x', color = '#005FCC') +
-  scale_color_gradient(low="steelblue", high="orange")+
-  labs(x = "total minutes asleep", y = "calories", title="Calories vs Total Minutes Asleep")
-```
-![image](Calories vs Total Minutes Asleep)
-
-we will check is there any effect of sedentary minutes and time asleep
-```
-plot13 <- ggplot(data = merged_data, aes(x = sedentary_minutes, y = total_minutes_asleep, color=total_minutes_asleep)) +
-  geom_point() +
-  scale_color_gradient(low="steelblue", high="orange")+
-  geom_smooth(method = 'loess', formula = 'y ~ x', color = '#005FCC') +
-  labs(title = "Total Minutes Asleep vs Sedentary minutes", x = 'sedentary minutes', y = 'minutes asleep') +
-  theme_classic()
-ggsave("total_minutes_asleep_vs_Sedentary_minutes.png", plot = plot13, width = 10, height = 6, dpi = 300) #plot13
-```
-![image](https://github.com/bhagyashri49641/Bellabeat_data_analysis/blob/6000684cdb6b0b231a8378d4f2913ee761aa585c/total_minutes_asleep_vs_Sedentary_minutes.png)
 
   
 ## 5. Share
