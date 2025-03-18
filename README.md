@@ -431,11 +431,18 @@ To do this we refer to key questions.
 8. 54% of the users who recorded their sleep data spent 55 minutes awake in bed before falling asleep. Saturday is the day users get the most sleep in a week.
 
 
-### Marketing recommendations to expand globally:
+### How could trends apply to Bellabeat customers? How could these trends help influence Bellabeat marketing strategy?
 
-- 🔢  Obtain more data for an accurate analysis, encouraging users to use a wifi-connected scale instead of manual weight entries. 
-- 🚲  Educational healthy style campaign encourages users to have short active exercises during the week, longer during the weekends, especially on Sunday where we see the lowest steps and most sedentary minutes.
-- 🎁  Educational healthy style campaign can pair with a point-award incentive system. Users completing the whole week's exercise will receive Bellabeat points on products/memberships.
-- 🏃‍♂️ The product, such as Leaf wellness tracker, can beat or vibrate after a prolonged period of sedentary minutes, signaling the user it's time to get active! Similarly, it can also remind the user it's time to sleep after sensing a prolonged awake time in bed.
+By leveraging trends and focusing on the unique needs and behaviors of users, Bellabeat could tailor its marketing strategy to better meet the needs of its target audience and help them achieve their fitness and wellness goals.
+
+1. Obtain more data for an accurate analysis, encouraging users to use a wifi-connected scale instead of manual weight entries.
+2. Promote active lifestyle: Given that users spend a significant amount of time sedentary and are not very active, Bellabeat could focus on promoting the benefits of an active lifestyle.
+3. Incorporating some of the features that can be a great way to encourage more physical activity such as goal setting (target to encourage users to aim for 10,000 steps per day or more), receiving reminders throughout the day to reach those goals
+4. For improving the weight control experience successful marketing strategy should focus on promoting weight management features, such as calorie intake monitoring and meal planning to help users achieve a healthy weight.
+5. creating challenges or goals that reward users for achieving specific milestones such as on Sunday people are in lazy mode so Bellabeat can give users a challenge like 'Can you dance for 10 minutes on the latest song ?' I am sure many people like dancing they may check what new song has released and might really dance on it.
+6. Bellabeat can encourage people to go to sleep earlier to get adequate amount and good quality of sleep by providing reminders and notifications.
+7. The product, such as Leaf wellness tracker, can beat or vibrate after a prolonged period of sedentary minutes, signaling the user it's time to get active! Similarly, it can also remind the user it's time to sleep after sensing a prolonged awake time in bed.
+
+
 
 
